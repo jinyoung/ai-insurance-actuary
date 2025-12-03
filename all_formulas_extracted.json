@@ -1,0 +1,845 @@
+[
+  {
+    "name": "순보험료 계산 공식",
+    "latex": "P = \\frac{I}{N} \\times \\frac{L}{B}",
+    "expression": "(I/N) * (L/B)",
+    "description": "1인당 평균 본인부담의료비를 계산하는 공식으로, 발생률과 본인부담의료비의 비율을 곱한 값이다.",
+    "variables": [
+      {
+        "name": "I",
+        "latex": "I",
+        "description": "보험사고 발생건수",
+        "unit": "건"
+      },
+      {
+        "name": "N",
+        "latex": "N",
+        "description": "위험단위수",
+        "unit": "단위"
+      },
+      {
+        "name": "L",
+        "latex": "L",
+        "description": "사고건당 본인부담의료비",
+        "unit": "금액"
+      },
+      {
+        "name": "B",
+        "latex": "B",
+        "description": "기준단위",
+        "unit": "단위"
+      }
+    ],
+    "source_page": 2
+  },
+  {
+    "name": "순보험료 공식",
+    "latex": "P = (I + N) \\times (L + B)",
+    "expression": "(I + N) * (L + B)",
+    "description": "순보험료를 사고발생률과 사고건당 본인부담의료비의 곱으로 나타낸 공식",
+    "variables": [
+      {
+        "name": "I",
+        "latex": "I",
+        "description": "사고발생률",
+        "unit": "없음"
+      },
+      {
+        "name": "N",
+        "latex": "N",
+        "description": "기타 요인",
+        "unit": "없음"
+      },
+      {
+        "name": "L",
+        "latex": "L",
+        "description": "총의료비",
+        "unit": "금액"
+      },
+      {
+        "name": "B",
+        "latex": "B",
+        "description": "지급건수",
+        "unit": "건수"
+      }
+    ],
+    "source_page": 3
+  },
+  {
+    "name": "보험료 조정 공식",
+    "latex": "P \\times N = I \\times (L + B)",
+    "expression": "P * N = I * (L + B)",
+    "description": "보험료의 조정을 위한 공식으로, 지급보험금과 순보험료 비교",
+    "variables": [
+      {
+        "name": "P",
+        "latex": "P",
+        "description": "순보험료",
+        "unit": "금액"
+      },
+      {
+        "name": "N",
+        "latex": "N",
+        "description": "기타 요인",
+        "unit": "없음"
+      },
+      {
+        "name": "I",
+        "latex": "I",
+        "description": "사고발생률",
+        "unit": "없음"
+      },
+      {
+        "name": "L",
+        "latex": "L",
+        "description": "총의료비",
+        "unit": "금액"
+      },
+      {
+        "name": "B",
+        "latex": "B",
+        "description": "지급건수",
+        "unit": "건수"
+      }
+    ],
+    "source_page": 3
+  },
+  {
+    "name": "단순평균 손해율",
+    "latex": "\\text{손해율} = \\frac{\\sum_{t=1}^{5} L_t}{5}",
+    "expression": "sum(L_t for t in range(1, 6)) / 5",
+    "description": "5년간 손해율의 단순평균",
+    "variables": [
+      {
+        "name": "L_t",
+        "latex": "L_t",
+        "description": "t년의 손해액",
+        "unit": "원"
+      }
+    ],
+    "source_page": 4
+  },
+  {
+    "name": "가중평균 손해율",
+    "latex": "\\text{손해율} = \\frac{\\sum_{t=1}^{T} w_t \\times L_t}{\\sum_{t=1}^{T} w_t \\times P_t}",
+    "expression": "(sum(w_t[t] * L_t[t] for t in range(1, T+1))) / (sum(w_t[t] * P_t[t] for t in range(1, T+1)))",
+    "description": "각 년도의 가중치를 고려한 손해율",
+    "variables": [
+      {
+        "name": "L_t",
+        "latex": "L_t",
+        "description": "t년의 손해액",
+        "unit": "원"
+      },
+      {
+        "name": "P_t",
+        "latex": "P_t",
+        "description": "t년의 보험료",
+        "unit": "원"
+      },
+      {
+        "name": "w_t",
+        "latex": "w_t",
+        "description": "t년의 가중치",
+        "unit": "없음"
+      }
+    ],
+    "source_page": 4
+  },
+  {
+    "name": "조정요인 m",
+    "latex": "m = \\frac{a - r}{r}",
+    "expression": "(a - r) / r",
+    "description": "실제손해율과 순보험료율의 차이를 고려한 조정요인",
+    "variables": [
+      {
+        "name": "a",
+        "latex": "a",
+        "description": "실제 손해율",
+        "unit": "없음"
+      },
+      {
+        "name": "r",
+        "latex": "r",
+        "description": "순보험료율",
+        "unit": "없음"
+      }
+    ],
+    "source_page": 4
+  },
+  {
+    "name": "상태 변수 집합",
+    "latex": "\\{ Y(x), Z(x) \\}, \\ x \\geq 0",
+    "expression": "Y(x), Z(x) for x >= 0",
+    "description": "상태 변수들의 집합을 나타내며, 연속결합확률론적으로 표현됨",
+    "variables": [
+      {
+        "name": "Y(x)",
+        "latex": "Y(x)",
+        "description": "상태 변수 Y",
+        "unit": "없음"
+      },
+      {
+        "name": "Z(x)",
+        "latex": "Z(x)",
+        "description": "상태 변수 Z",
+        "unit": "없음"
+      },
+      {
+        "name": "x",
+        "latex": "x",
+        "description": "시간 변수",
+        "unit": "시간 단위"
+      }
+    ],
+    "source_page": 6
+  },
+  {
+    "name": "상태 함수",
+    "latex": "Y(x) = H, S, \\text{ or } D",
+    "expression": "Y(x) = 'H' or 'S' or 'D'",
+    "description": "Y(x)는 세 가지 상태를 나타냄",
+    "variables": [
+      {
+        "name": "x",
+        "latex": "x",
+        "description": "시간 변수",
+        "unit": "없음"
+      }
+    ],
+    "source_page": 7
+  },
+  {
+    "name": "상태 전환 시간",
+    "latex": "Z(x) = \\max \\{ t : t \\leq x \\text{ and } Y(x-h) = Y(x) \\text{ for all } h \\text{ s.t. } 0 \\leq h \\leq t \\}",
+    "expression": "Z(x) = max({t for t in range(0, x+1) if all(Y(x-h) == Y(x) for h in range(0, t+1))})",
+    "description": "Z(x)는 상태가 유지된 최대 시간을 나타냄",
+    "variables": [
+      {
+        "name": "x",
+        "latex": "x",
+        "description": "시간 변수",
+        "unit": "없음"
+      },
+      {
+        "name": "h",
+        "latex": "h",
+        "description": "시간 간격",
+        "unit": "없음"
+      },
+      {
+        "name": "t",
+        "latex": "t",
+        "description": "최대 시간",
+        "unit": "없음"
+      }
+    ],
+    "source_page": 7
+  },
+  {
+    "name": "확률 정의",
+    "latex": "t_{x,z}^{j,k} = P\\left[Y(x+t) = k \\mid Y(x) = j \\text{ and } Z(x) = z\\right]",
+    "expression": "",
+    "description": "연속-시간 파라메타를 갖는 상태들의 통계적 과정 정의",
+    "variables": [
+      {
+        "name": "t",
+        "latex": "t",
+        "description": "시간 변수",
+        "unit": "시간"
+      },
+      {
+        "name": "x",
+        "latex": "x",
+        "description": "초기 시간",
+        "unit": "시간"
+      },
+      {
+        "name": "z",
+        "latex": "z",
+        "description": "상태 변수",
+        "unit": "상태"
+      },
+      {
+        "name": "j, k",
+        "latex": "j, k",
+        "description": "상태 지표",
+        "unit": "상태"
+      },
+      {
+        "name": "Y(x)",
+        "latex": "Y(x)",
+        "description": "상태 Y at 시간 x",
+        "unit": "상태"
+      },
+      {
+        "name": "Z(x)",
+        "latex": "Z(x)",
+        "description": "상태 Z at 시간 x",
+        "unit": "상태"
+      }
+    ],
+    "source_page": 8
+  },
+  {
+    "name": "확률 정의",
+    "latex": "w,t_{x}^{HS} = P\\left[Y(x+t) = S \\text{ and } Z(x+t) \\leq w \\mid Y(x) = H \\right]",
+    "expression": "",
+    "description": "확률 정의",
+    "variables": [
+      {
+        "name": "w",
+        "latex": "w",
+        "description": "상태의 경계",
+        "unit": "상태"
+      },
+      {
+        "name": "t",
+        "latex": "t",
+        "description": "시간 변수",
+        "unit": "시간"
+      },
+      {
+        "name": "x",
+        "latex": "x",
+        "description": "초기 시간",
+        "unit": "시간"
+      },
+      {
+        "name": "Y(x)",
+        "latex": "Y(x)",
+        "description": "상태 Y at 시간 x",
+        "unit": "상태"
+      },
+      {
+        "name": "Z(x)",
+        "latex": "Z(x)",
+        "description": "상태 Z at 시간 x",
+        "unit": "상태"
+      }
+    ],
+    "source_page": 8
+  },
+  {
+    "name": "확률 정의",
+    "latex": "t_{x}^{HH} = P\\left[Y(x+t) = H \\text{ and } Z(x+t) \\geq t \\mid Y(x) = H \\right]",
+    "expression": "",
+    "description": "건강 상태에 있을 확률 정의",
+    "variables": [
+      {
+        "name": "t",
+        "latex": "t",
+        "description": "시간 변수",
+        "unit": "시간"
+      },
+      {
+        "name": "x",
+        "latex": "x",
+        "description": "초기 시간",
+        "unit": "시간"
+      },
+      {
+        "name": "Y(x)",
+        "latex": "Y(x)",
+        "description": "상태 Y at 시간 x",
+        "unit": "상태"
+      },
+      {
+        "name": "Z(x)",
+        "latex": "Z(x)",
+        "description": "상태 Z at 시간 x",
+        "unit": "상태"
+      }
+    ],
+    "source_page": 8
+  },
+  {
+    "name": "확률 정의",
+    "latex": "t_{x,z}^{SS} = P\\left[Y(x+t) = S \\text{ and } Z(x+t) = z+t \\mid Y(x) = S \\text{ and } Z(x) = z \\right]",
+    "expression": "",
+    "description": "상태 S에서의 전이 확률 정의",
+    "variables": [
+      {
+        "name": "t",
+        "latex": "t",
+        "description": "시간 변수",
+        "unit": "시간"
+      },
+      {
+        "name": "x",
+        "latex": "x",
+        "description": "초기 시간",
+        "unit": "시간"
+      },
+      {
+        "name": "z",
+        "latex": "z",
+        "description": "상태 변수",
+        "unit": "상태"
+      },
+      {
+        "name": "Y(x)",
+        "latex": "Y(x)",
+        "description": "상태 Y at 시간 x",
+        "unit": "상태"
+      },
+      {
+        "name": "Z(x)",
+        "latex": "Z(x)",
+        "description": "상태 Z at 시간 x",
+        "unit": "상태"
+      }
+    ],
+    "source_page": 8
+  },
+  {
+    "name": "μ_x 공식",
+    "latex": "\\mu_x = \\lim_{t \\to 0^+} \\frac{t p_x^{HD}}{t}",
+    "expression": "lim(t_p_x_HD/t, t, 0)",
+    "description": "μ_x는 특정 조건에서의 이행 확률",
+    "variables": [
+      {
+        "name": "t",
+        "latex": "t",
+        "description": "시간",
+        "unit": "초"
+      },
+      {
+        "name": "p_x_HD",
+        "latex": "p_x^{HD}",
+        "description": "특정 상태 전이 확률",
+        "unit": "확률"
+      }
+    ],
+    "source_page": 9
+  },
+  {
+    "name": "σ_x 공식",
+    "latex": "\\sigma_x = \\lim_{t \\to 0^+} \\frac{t p_x^{HS}}{t}",
+    "expression": "lim(t_p_x_HS/t, t, 0)",
+    "description": "σ_x는 건강 상태에서의 이행 확률",
+    "variables": [
+      {
+        "name": "t",
+        "latex": "t",
+        "description": "시간",
+        "unit": "초"
+      },
+      {
+        "name": "p_x_HS",
+        "latex": "p_x^{HS}",
+        "description": "건강 상태 전이 확률",
+        "unit": "확률"
+      }
+    ],
+    "source_page": 9
+  },
+  {
+    "name": "ν_x,z 공식",
+    "latex": "\\nu_{x,z} = \\lim_{t \\to 0^+} \\frac{t p_{x,z}^{SD}}{t}",
+    "expression": "lim(t_p_x_z_SD/t, t, 0)",
+    "description": "ν_x,z는 특정 상태에서의 이행 확률",
+    "variables": [
+      {
+        "name": "t",
+        "latex": "t",
+        "description": "시간",
+        "unit": "초"
+      },
+      {
+        "name": "p_x_z_SD",
+        "latex": "p_{x,z}^{SD}",
+        "description": "특정 상태에서의 전이 확률",
+        "unit": "확률"
+      }
+    ],
+    "source_page": 9
+  },
+  {
+    "name": "ρ_x,z 공식",
+    "latex": "\\rho_{x,z} = \\lim_{t \\to 0^+} \\frac{t p_{x,z}^{SH}}{t}",
+    "expression": "lim(t_p_x_z_SH/t, t, 0)",
+    "description": "ρ_x,z는 특정 상태에서의 이행 확률",
+    "variables": [
+      {
+        "name": "t",
+        "latex": "t",
+        "description": "시간",
+        "unit": "초"
+      },
+      {
+        "name": "p_x_z_SH",
+        "latex": "p_{x,z}^{SH}",
+        "description": "특정 상태에서의 전이 확률",
+        "unit": "확률"
+      }
+    ],
+    "source_page": 9
+  },
+  {
+    "name": "2개 이상의 이행 확률 공식",
+    "latex": "P \\left[ 2 \\text{ or more transitions } \\subseteq (x, x+t) \\right] = o(t)",
+    "expression": "P_2_or_more_transitions = o(t)",
+    "description": "두 개 이상의 이행이 일어날 확률의 표현",
+    "variables": [
+      {
+        "name": "x",
+        "latex": "x",
+        "description": "시작 시점",
+        "unit": "시간"
+      },
+      {
+        "name": "t",
+        "latex": "t",
+        "description": "시간 간격",
+        "unit": "시간"
+      },
+      {
+        "name": "o(t)",
+        "latex": "o(t)",
+        "description": "작은 항",
+        "unit": "시간의 함수"
+      }
+    ],
+    "source_page": 9
+  },
+  {
+    "name": "t p_x^{HS} 공식",
+    "latex": "t p_x^{HS} = P \\left[ Y(x+t) = S \\mid Y(x) = H \\right] = t \\sigma_x + o(t)",
+    "expression": "t_p_x_HS = t_sigma_x + o(t)",
+    "description": "건강 상태 H에서 S로의 전이 확률",
+    "variables": [
+      {
+        "name": "t",
+        "latex": "t",
+        "description": "시간",
+        "unit": "초"
+      },
+      {
+        "name": "σ_x",
+        "latex": "\\sigma_x",
+        "description": "건강 상태에서의 이행 확률",
+        "unit": "확률"
+      },
+      {
+        "name": "o(t)",
+        "latex": "o(t)",
+        "description": "작은 항",
+        "unit": "시간의 함수"
+      }
+    ],
+    "source_page": 9
+  },
+  {
+    "name": "초기 건강 상태에서 사망할 확률",
+    "latex": "t p_{x}^{HD} = P(Y(x+t) = D \\mid Y(x) = H) = t \\mu_x + o(t)",
+    "expression": "t * mu_x + o(t)",
+    "description": "x세 초기의 건강한 상태(H)에 있을 조건하에서 x+t세 시점에 사망할 확률.",
+    "variables": [
+      {
+        "name": "t",
+        "latex": "t",
+        "description": "시간",
+        "unit": "년"
+      },
+      {
+        "name": "mu_x",
+        "latex": "\\mu_x",
+        "description": "사망률",
+        "unit": "비율"
+      },
+      {
+        "name": "o(t)",
+        "latex": "o(t)",
+        "description": "고차항",
+        "unit": "비율"
+      }
+    ],
+    "source_page": 10
+  },
+  {
+    "name": "이환 상태에서 건강한 상태로 회복할 확률",
+    "latex": "t p_{x,z}^{SH} = P(Y(x+t) = H \\mid Y(x) = S \\text{ and } Z(x) = z) = t \\rho_{x,z} + o(t)",
+    "expression": "t * rho_{x,z} + o(t)",
+    "description": "이환기간을 가지고 이환상태에 있다가 x+t세 시작 시점에 건강한 상태로 회복할 확률.",
+    "variables": [
+      {
+        "name": "t",
+        "latex": "t",
+        "description": "시간",
+        "unit": "년"
+      },
+      {
+        "name": "rho_{x,z}",
+        "latex": "\\rho_{x,z}",
+        "description": "회복률",
+        "unit": "비율"
+      },
+      {
+        "name": "o(t)",
+        "latex": "o(t)",
+        "description": "고차항",
+        "unit": "비율"
+      }
+    ],
+    "source_page": 10
+  },
+  {
+    "name": "이환 상태에서 사망할 확률",
+    "latex": "t p_{x,z}^{SD} = P(Y(x+t) = D \\mid Y(x) = S \\text{ and } Z(x) = z) = t \\nu_{x,z} + o(t)",
+    "expression": "t * nu_{x,z} + o(t)",
+    "description": "이환기간을 가지고 이환상태에 있다가 사망할 확률.",
+    "variables": [
+      {
+        "name": "t",
+        "latex": "t",
+        "description": "시간",
+        "unit": "년"
+      },
+      {
+        "name": "nu_{x,z}",
+        "latex": "\\nu_{x,z}",
+        "description": "사망률",
+        "unit": "비율"
+      },
+      {
+        "name": "o(t)",
+        "latex": "o(t)",
+        "description": "고차항",
+        "unit": "비율"
+      }
+    ],
+    "source_page": 10
+  },
+  {
+    "name": "사망 확률",
+    "latex": "t p_{x}^{PD} = t p_{x}^{HD} + t p_{x,z}^{SD}",
+    "expression": "t * p_{x}^{HD} + t * p_{x,z}^{SD}",
+    "description": "x세에 건강한 상태에 있다가 x+t 세에 사망할 확률.",
+    "variables": [
+      {
+        "name": "t",
+        "latex": "t",
+        "description": "시간",
+        "unit": "년"
+      },
+      {
+        "name": "p_{x}^{HD}",
+        "latex": "p_{x}^{HD}",
+        "description": "초기 건강 상태에서 사망할 확률",
+        "unit": "비율"
+      },
+      {
+        "name": "p_{x,z}^{SD}",
+        "latex": "p_{x,z}^{SD}",
+        "description": "이환 상태에서 사망할 확률",
+        "unit": "비율"
+      }
+    ],
+    "source_page": 10
+  },
+  {
+    "name": "표본 경로의 우도",
+    "latex": "e^{-t_2(\\sigma + \\mu)} \\cdot \\sigma \\cdot e^{-t_3(\\rho + \\nu)} \\cdot \\rho \\cdot e^{-t_4(\\sigma + \\mu)}",
+    "expression": "exp(-t2 * (sigma + mu)) * sigma * exp(-t3 * (rho + nu)) * rho * exp(-t4 * (sigma + mu))",
+    "description": "개별 표본 경로의 우도",
+    "variables": [
+      {
+        "name": "t2",
+        "latex": "t_2",
+        "description": "관찰 시간",
+        "unit": "시간"
+      },
+      {
+        "name": "sigma",
+        "latex": "\\sigma",
+        "description": "상수",
+        "unit": "없음"
+      },
+      {
+        "name": "mu",
+        "latex": "\\mu",
+        "description": "상수",
+        "unit": "없음"
+      },
+      {
+        "name": "t3",
+        "latex": "t_3",
+        "description": "관찰 시간",
+        "unit": "시간"
+      },
+      {
+        "name": "rho",
+        "latex": "\\rho",
+        "description": "상수",
+        "unit": "없음"
+      },
+      {
+        "name": "nu",
+        "latex": "\\nu",
+        "description": "상수",
+        "unit": "없음"
+      },
+      {
+        "name": "t4",
+        "latex": "t_4",
+        "description": "관찰 시간",
+        "unit": "시간"
+      }
+    ],
+    "source_page": 11
+  },
+  {
+    "name": "총 표본 경로들의 우도",
+    "latex": "L = e^{-E_1(\\sigma + \\mu)} \\cdot e^{-E_2(\\rho + \\nu)} \\cdot \\sigma^{O_1} \\cdot \\rho^{O_2} \\cdot \\mu^{O_3} \\cdot \\nu^{O_4}",
+    "expression": "exp(-E1 * (sigma + mu)) * exp(-E2 * (rho + nu)) * sigma**O1 * rho**O2 * mu**O3 * nu**O4",
+    "description": "총 표본 경로들의 우도",
+    "variables": [
+      {
+        "name": "E1",
+        "latex": "E_1",
+        "description": "H 상태로 보낸 총 관찰기간",
+        "unit": "시간"
+      },
+      {
+        "name": "E2",
+        "latex": "E_2",
+        "description": "관찰기간 동안의 총 이환기간",
+        "unit": "시간"
+      },
+      {
+        "name": "sigma",
+        "latex": "\\sigma",
+        "description": "상수",
+        "unit": "없음"
+      },
+      {
+        "name": "rho",
+        "latex": "\\rho",
+        "description": "상수",
+        "unit": "없음"
+      },
+      {
+        "name": "mu",
+        "latex": "\\mu",
+        "description": "상수",
+        "unit": "없음"
+      },
+      {
+        "name": "nu",
+        "latex": "\\nu",
+        "description": "상수",
+        "unit": "없음"
+      },
+      {
+        "name": "O1",
+        "latex": "O_1",
+        "description": "H상태에서 S상태로의 이행건수",
+        "unit": "건수"
+      },
+      {
+        "name": "O2",
+        "latex": "O_2",
+        "description": "S상태에서 H상태로의 이행건수",
+        "unit": "건수"
+      },
+      {
+        "name": "O3",
+        "latex": "O_3",
+        "description": "H상태로의 이행건수",
+        "unit": "건수"
+      },
+      {
+        "name": "O4",
+        "latex": "O_4",
+        "description": "H상태로의 이행건수",
+        "unit": "건수"
+      }
+    ],
+    "source_page": 11
+  },
+  {
+    "name": "최대우도 추정량 - 시그마",
+    "latex": "\\hat{\\sigma} = \\frac{O_1}{E_1}",
+    "expression": "(O1)/(E1)",
+    "description": "O1을 E1로 나눈 값으로 최대우도 추정량 시그마를 계산",
+    "variables": [
+      {
+        "name": "O1",
+        "latex": "O_1",
+        "description": "관측된 사건 수",
+        "unit": "단위 없음"
+      },
+      {
+        "name": "E1",
+        "latex": "E_1",
+        "description": "기대되는 사건 수",
+        "unit": "단위 없음"
+      }
+    ],
+    "source_page": 12
+  },
+  {
+    "name": "최대우도 추정량 - 로우",
+    "latex": "\\hat{\\rho} = \\frac{O_2}{E_2}",
+    "expression": "(O2)/(E2)",
+    "description": "O2를 E2로 나눈 값으로 최대우도 추정량 로우를 계산",
+    "variables": [
+      {
+        "name": "O2",
+        "latex": "O_2",
+        "description": "관측된 사건 수",
+        "unit": "단위 없음"
+      },
+      {
+        "name": "E2",
+        "latex": "E_2",
+        "description": "기대되는 사건 수",
+        "unit": "단위 없음"
+      }
+    ],
+    "source_page": 12
+  },
+  {
+    "name": "최대우도 추정량 - 뮤",
+    "latex": "\\hat{\\mu} = \\frac{O_3}{E_1}",
+    "expression": "(O3)/(E1)",
+    "description": "O3을 E1로 나눈 값으로 최대우도 추정량 뮤를 계산",
+    "variables": [
+      {
+        "name": "O3",
+        "latex": "O_3",
+        "description": "관측된 사건 수",
+        "unit": "단위 없음"
+      },
+      {
+        "name": "E1",
+        "latex": "E_1",
+        "description": "기대되는 사건 수",
+        "unit": "단위 없음"
+      }
+    ],
+    "source_page": 12
+  },
+  {
+    "name": "최대우도 추정량 - 누",
+    "latex": "\\hat{\\nu} = \\frac{O_4}{E_2}",
+    "expression": "(O4)/(E2)",
+    "description": "O4를 E2로 나눈 값으로 최대우도 추정량 누를 계산",
+    "variables": [
+      {
+        "name": "O4",
+        "latex": "O_4",
+        "description": "관측된 사건 수",
+        "unit": "단위 없음"
+      },
+      {
+        "name": "E2",
+        "latex": "E_2",
+        "description": "기대되는 사건 수",
+        "unit": "단위 없음"
+      }
+    ],
+    "source_page": 12
+  }
+]
