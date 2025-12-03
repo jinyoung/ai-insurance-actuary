@@ -81,3 +81,41 @@ dmypy.json
 # Local configuration
 .env.local
 .env.*.local
+
+# Frontend / Node.js
+node_modules/
+.next/
+.nuxt/
+.output/
+out/
+.turbo/
+.vercel/
+.netlify/
+
+# Dependency lock files (optional)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Build outputs
+*.tsbuildinfo
+next-env.d.ts
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Testing
+.nyc_output/
+
+# Misc
+*.local
