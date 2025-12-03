@@ -156,9 +156,9 @@
 </template>
 
 <script>
-import axios from 'axios'
-import katex from 'katex'
-import { marked } from 'marked'
+import axios from 'axios';
+import katex from 'katex';
+import { marked } from 'marked';
 
 export default {
   name: 'App',
